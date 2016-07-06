@@ -19,8 +19,12 @@ namespace Gate.Networking.Servers
                         {
                                 case 1280:
                                         {
-                                                uint clientId = BitConverter.ToUInt32(data, 0xC);
-                                                Client.AssignGameserverConnection(clientId, connection);
+                                                int clientId = BitConverter.ToInt32(data, 0xC);
+                                                int mapId = BitConverter.ToInt32(data, 0x10);
+                                                var client = Client.AssignGameserverConnection(clientId, connection);
+
+                                                var zone = Zone.CreateInstance(mapId);
+                                                zone.AddClient(client);
                                         }
                                         break;
                                 case 16896:

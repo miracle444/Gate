@@ -56,6 +56,7 @@
     <Compile Include="Networking\Protocols.cs" />
     <Compile Include="Networking\Servers\Server.cs" />
     <Compile Include="Const\NetError.cs" />
+    <Compile Include="Zone.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

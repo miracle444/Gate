@@ -23,6 +23,8 @@ namespace Gate.Networking
                 public Connection AuthConnection { get; private set; }
                 public Connection GameConnection { get; private set; }
 
+                public Zone Zone { get; internal set; }
+
                 public static Client New(Connection authConnection)
                 {
                         var client = new Client(authConnection);
@@ -36,7 +38,7 @@ namespace Gate.Networking
                         return _connectionToClientMap.TryGetValue(connection, out client) ? client : null;
                 }
 
-                public static Client AssignGameserverConnection(uint clientId, Connection connection)
+                public static Client AssignGameserverConnection(int clientId, Connection connection)
                 {
                         Client client = _connectionToClientMap.Values.FirstOrDefault(c => c.ID == clientId);
 
