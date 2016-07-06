@@ -21,7 +21,7 @@ namespace Gate.Controllers.Auth
                         const ushort PACKING_VERSION = 6;
                         stream.Write(BitConverter.GetBytes(PACKING_VERSION), 0, 2);
 
-                        var lastOutpost = (ushort) 0x2AD;
+                        var lastOutpost = (ushort) 0x2AC;
                         stream.Write(BitConverter.GetBytes(lastOutpost), 0, 2);
 
                         var unknown1 = new byte[]
