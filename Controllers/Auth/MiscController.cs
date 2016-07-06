@@ -17,7 +17,7 @@ namespace Gate.Controllers.Auth
                         controllerManager.RegisterHandler(13, LogoutHandler);
                 }
 
-                private void LogoutHandler(Connection connection, List<object> objects)
+                private void LogoutHandler(Connection connection, List<object> message)
                 {
                         Client client = Client.FromConnection(connection);
 
@@ -27,27 +27,27 @@ namespace Gate.Controllers.Auth
                         }
                 }
 
-                private void Packet9Handler(Connection connection, List<object> objects)
+                private void Packet9Handler(Connection connection, List<object> message)
                 {
-                        connection.Send((int) AuthServerMessage.NetError, (uint) objects[1], (int) NetError.NoError);
+                        connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
 
-                private void SelectCharacterHandler(Connection connection, List<object> objects)
+                private void SelectCharacterHandler(Connection connection, List<object> message)
                 {
-                        connection.Send((int) AuthServerMessage.NetError, (uint) objects[1], (int) NetError.NoError);
+                        connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
 
-                private void Packet32Handler(Connection connection, List<object> objects)
+                private void Packet32Handler(Connection connection, List<object> message)
                 {
-                        connection.Send((int) AuthServerMessage.NetError, (uint) objects[1], (int) NetError.NoError);
+                        connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
 
-                private void PlayRequest(Connection connection, List<object> objects)
+                private void PlayRequest(Connection connection, List<object> message)
                 {
                         Client client = Client.FromConnection(connection);
 
-                        var transactionId = (uint) objects[1];
-                        var mapId = (uint) objects[3];
+                        var transactionId = (uint) message[1];
+                        var mapId = (uint) message[3];
 
                         if (mapId != 0)
                         {
@@ -65,9 +65,9 @@ namespace Gate.Controllers.Auth
                         }
                 }
 
-                private void Packet53Handler(Connection connection, List<object> objects)
+                private void Packet53Handler(Connection connection, List<object> message)
                 {
-                        var transactionId = (uint) objects[1];
+                        var transactionId = (uint) message[1];
 
                         connection.Send(38, transactionId, 0);
 

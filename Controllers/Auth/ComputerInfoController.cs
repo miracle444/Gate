@@ -12,7 +12,7 @@ namespace Gate.Controllers.Auth
                         controllerManager.RegisterHandler(2, ComputerInfoHandler);
                 }
 
-                private void ComputerInfoHandler(Connection connection, List<object> enumerable)
+                private void ComputerInfoHandler(Connection connection, List<object> message)
                 {
                         connection.Send((int) AuthServerMessage.ComputerInfoReply, 0, 0, 1, 1);
                 }

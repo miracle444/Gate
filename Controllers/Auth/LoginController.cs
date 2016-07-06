@@ -73,11 +73,11 @@ namespace Gate.Controllers.Auth
                         return stream.ToArray();
                 }
 
-                private void LoginHandler18(Connection connection, List<object> data)
+                private void LoginHandler18(Connection connection, List<object> message)
                 {
                         Client client = Client.New(connection);
 
-                        var transactionId = (uint) data[1];
+                        var transactionId = (uint) message[1];
 
                         if (true)
                         {
