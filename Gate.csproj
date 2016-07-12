@@ -39,6 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\Game\MiscController.cs" />
+    <Compile Include="PlayerAppearance.cs" />
+    <Compile Include="PlayerCharacter.cs" />
+    <Compile Include="Const\AgentProperty.cs" />
+    <Compile Include="Const\GameServerMessage.cs" />
+    <Compile Include="Controllers\Game\InstanceLoadController.cs" />
+    <Compile Include="Networking\Abilities.cs" />
+    <Compile Include="Networking\Identifyable.cs" />
     <Compile Include="Networking\Servers\AuthServer.cs" />
     <Compile Include="Const\AuthServerMessage.cs" />
     <Compile Include="Gate.cs" />
@@ -52,10 +60,12 @@
     <Compile Include="Networking\Listener.cs" />
     <Compile Include="Controllers\Auth\LoginController.cs" />
     <Compile Include="Controllers\Auth\MiscController.cs" />
+    <Compile Include="Const\Profession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Networking\Protocols.cs" />
     <Compile Include="Networking\Servers\Server.cs" />
     <Compile Include="Const\NetError.cs" />
+    <Compile Include="Skillbar.cs" />
     <Compile Include="Zone.cs" />
   </ItemGroup>
   <ItemGroup>

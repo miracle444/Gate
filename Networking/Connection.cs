@@ -37,11 +37,15 @@ namespace Gate.Networking
 
                                 callback_(this, SubArray(receiveBuffer_, 0, bytesRead));
 
-                                socket_.BeginReceive(receiveBuffer_, 0, receiveBuffer_.Length, SocketFlags.None, ReceiveCallback,
-                                                     null);
+                                if (socket_.Connected)
+                                {
+                                        socket_.BeginReceive(receiveBuffer_, 0, receiveBuffer_.Length, SocketFlags.None, ReceiveCallback,
+                                                             null);
+                                }
                         }
                         catch (Exception e)
                         {
+                                Console.Error.WriteLine(e.ToString());
                                 Disconnect();
                         }
                 }

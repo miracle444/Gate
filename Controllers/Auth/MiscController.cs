@@ -9,11 +9,11 @@ namespace Gate.Controllers.Auth
         {
                 public void Register(IControllerManager controllerManager)
                 {
-                        controllerManager.RegisterHandler(9, Packet9Handler);
+                        controllerManager.RegisterHandler(9, Message9Handler);
                         controllerManager.RegisterHandler(10, SelectCharacterHandler);
-                        controllerManager.RegisterHandler(32, Packet32Handler);
+                        controllerManager.RegisterHandler(32, Message32Handler);
                         controllerManager.RegisterHandler(41, PlayRequest);
-                        controllerManager.RegisterHandler(53, Packet53Handler);
+                        controllerManager.RegisterHandler(53, Message53Handler);
                         controllerManager.RegisterHandler(13, LogoutHandler);
                 }
 
@@ -27,17 +27,19 @@ namespace Gate.Controllers.Auth
                         }
                 }
 
-                private void Packet9Handler(Connection connection, List<object> message)
+                private void Message9Handler(Connection connection, List<object> message)
                 {
                         connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
 
                 private void SelectCharacterHandler(Connection connection, List<object> message)
                 {
+                        Client client = Client.FromConnection(connection);
+                        client.SelectCharacter((string) message[2]);
                         connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
 
-                private void Packet32Handler(Connection connection, List<object> message)
+                private void Message32Handler(Connection connection, List<object> message)
                 {
                         connection.Send((int) AuthServerMessage.NetError, (uint) message[1], (int) NetError.NoError);
                 }
@@ -65,12 +67,11 @@ namespace Gate.Controllers.Auth
                         }
                 }
 
-                private void Packet53Handler(Connection connection, List<object> message)
+                private void Message53Handler(Connection connection, List<object> message)
                 {
                         var transactionId = (uint) message[1];
 
                         connection.Send(38, transactionId, 0);
-
                         connection.Send((int) AuthServerMessage.NetError, transactionId, (int) NetError.NoError);
                 }
         }
